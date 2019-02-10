@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;user&apos; in &apos;com.example.np_spring5_tutorial.controllers.SignupController.doSignup(...)&apos; to &apos;userCommand&apos;&#x0D;&#x0A;- Original project: &apos;np-spring5-tutorial&apos;&#x0D;&#x0A;- Original element: &apos;com.example.np_spring5_tutorial.controllers.SignupController.doSignup(UserCommand, BindingResult).user&apos;&#x0D;&#x0A;- Renamed element: &apos;user&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;user&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src\/main\/java&lt;com.example.np_spring5_tutorial.controllers{SignupController.java[SignupController~doSignup~QUserCommand;~QBindingResult;@user!1493!1543!1540!1543!QUserCommand;!0!true" name="userCommand" references="true" stamp="1547319172512" version="1.0"/>
+</session>
