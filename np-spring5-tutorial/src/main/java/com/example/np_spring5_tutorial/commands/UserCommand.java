@@ -1,6 +1,5 @@
 package com.example.np_spring5_tutorial.commands;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import org.springframework.web.bind.annotation.RequestParam;
@@ -8,6 +7,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.np_spring5_tutorial.domain.User;
 import com.example.np_spring5_tutorial.validation.Password;
 import com.example.np_spring5_tutorial.validation.UniqueEmail;
+import javax.validation.Constraint;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 /* Classe do tipo command que valida entradas do usuario (UI) para posteriormente ser gravada no banco de dados.
  * Esta funcao de persistencia no banco eh delegada para a layer de services, onde recebe um UserCommand, converte para a classe de dominio (JPA) e grava no banco usando a interface JPARepository  */

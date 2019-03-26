@@ -8,9 +8,11 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 import javax.validation.Constraint;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+@Constraint(validatedBy={})
 @NotBlank
 @Size(min=6, max=100)
 @Documented

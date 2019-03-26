@@ -8,12 +8,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
 	
-	/*
+	
+         // uma vez tirei isso e deu pau
 	  @Override
 	  public void configureViewResolvers(ViewResolverRegistry registry) {
 	      registry.jsp("/WEB-INF/views/jsp/", ".jsp");
 	  }
-	  */
+	  
 	
 	  @Override
 	  public void addViewControllers(ViewControllerRegistry registry) {
@@ -22,6 +23,8 @@ public class MvcConfig implements WebMvcConfigurer {
 	              .setViewName("home");
 	      registry.addViewController("/login")
               		.setViewName("login");
+	      registry.addViewController("/admin")
+	      		.setViewName("admin");
 	      
 	  
 	  }

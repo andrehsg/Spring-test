@@ -7,5 +7,5 @@ import com.example.np_spring5_tutorial.commands.UserCommand;
 public interface UserService {
 
     void signUp(UserCommand usr);
-    void afterAppReady (ApplicationReadyEvent event);
+    void afterApplicationReady(ApplicationReadyEvent event);
 }

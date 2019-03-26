@@ -30,7 +30,7 @@
       <li class="nav-item">
         <a class="nav-link" href="/signup">
         <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
-        Signup
+        Sign up
         </a>
       </li>
       <li class="nav-item dropdown">

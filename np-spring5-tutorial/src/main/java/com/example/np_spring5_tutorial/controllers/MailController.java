@@ -12,10 +12,11 @@ import com.example.np_spring5_tutorial.mail.MockMailSender;
 public class MailController {
 	
 	
-	//@Qualifier ("mockMailSender") 
+	
 	
 	
 	@Autowired
+	//@Qualifier ("mockMailSender") 
 	private IMailSender smtp;
 	@RequestMapping("/mail")
 	public String hello () {

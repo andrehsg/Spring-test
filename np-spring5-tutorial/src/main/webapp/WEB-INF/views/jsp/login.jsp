@@ -3,21 +3,27 @@
 <%@include file="includes/header.jsp" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
  
-
-
 
 <div class="container">  
     <div class="panel panel-primary">
         <div class="panel-heading"> Please sign in </div>
         <div class="panel-body">
-		        <c:if test="${param.logout == 'logout'}">
-         Ok! Great Choice!
-     </c:if>
-			<div class="alert alert-success">
-				You have been signed out!
-			</div>
+		    <c:if test="${param.logout != null}">
+				<div class="alert alert-success">
+					You have been signed out!
+				</div>
 			</c:if>  
+			
+			<c:if test="${param.error != null}">
+				<div class="alert alert-danger">
+					Fail to log in
+					<c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
+						Reason: ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+					</c:if>
+				</div>
+			</c:if>
 		   <form:form>
 			  <div class="form-group">
 			    <label for="email">Email address</label>
