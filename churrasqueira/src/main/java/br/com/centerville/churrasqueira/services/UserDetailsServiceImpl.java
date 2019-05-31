@@ -24,7 +24,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 	log.debug("finding " + username);
-	UserDetails ud = userRepository.findByApto(Integer.parseInt(username));
+	UserDetails ud = userRepository.findByApartamento(Integer.parseInt(username));
 	//UserDetails ud = userRepository.findById(Integer.parseInt(username)).orElseThrow(() -> new UsernameNotFoundException(username));
 	return ud;
 				

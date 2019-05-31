@@ -6,6 +6,8 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\Andre\GitHub\Spring"/>
+			<item value="C:\Users\Andre\Downloads\Microservices-With-Spring-Student-Files-master"/>
 			<item value="C:\Users\Andre\GitHub\Spring\churrasqueira"/>
 		</list>
 		<list key="projectNameTemplate">

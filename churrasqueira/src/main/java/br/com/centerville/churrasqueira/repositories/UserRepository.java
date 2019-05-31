@@ -10,5 +10,5 @@ import br.com.centerville.churrasqueira.models.*;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-    User findByApto(int parseInt);
+    User findByApartamento(int parseInt);
 }

@@ -11,43 +11,140 @@
 	    $("#header").load("includes/header.html"); 
 	    });
         </script>
+
+     <script type="text/javascript">
+     function ExampleJS(){
+        var jFirst = document.getElementById("condomino").value;
+        var jLast = document.getElementById("apto").value;
+        var jp = document.getElementById("inputform").value;
         
-        <script>
-        $(document).ready(function(){
-        $("#sendButton").click(function(){
-            $.ajax({
-                type: 'POST',
-                url: 'http://localhost:8080/api/novoCondominos', 
-                data: 'Hello'
-            })
-        </script>
+        /* Get from elements values */
+        var values = $(this).serialize();
+        
+        alert("Your name is: " + jp + " " + jLast);
+        ajaxRequest= $.ajax({
+            url: "http://localhost:8080/api/novoCondomino",
+            type: "post",
+            data: values
+        });
+     }
+     
+  function sendData(data) {
+  
+  console.log( 'foo' ); // string
+      alert('Data' + data);
+	  var XHR = new XMLHttpRequest();
+	  var urlEncodedData = "";
+	  var urlEncodedDataPairs = [];
+	  var name;
+
+	  // Turn the data object into an array of URL-encoded key/value pairs.
+	  for(name in data) {
+	    urlEncodedDataPairs.push(encodeURIComponent(name) + '=' + encodeURIComponent(data[name]));
+	  }
+
+	  // Combine the pairs into a single string and replace all %-encoded spaces to 
+	  // the '+' character; matches the behaviour of browser form submissions.
+	  urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
+	
+	  // Define what happens on successful data submission
+	  XHR.addEventListener('load', function(event) {
+	    event.preventDefault();
+	    alert('Yeah! Data sent and response loaded.');
+	  });
+
+	  // Define what happens in case of error
+	  XHR.addEventListener('error', function(event) {
+	    alert('Oops! Something goes wrong.');
+	  });
+	
+	  // Set up our request
+	  XHR.open('POST', 'http://localhost:8080/api/novoCondomino');
+	
+	  // Add the required HTTP header for form data POST requests
+	  XHR.setRequestHeader('Content-Type', 'application/json');
+	
+	  // Finally, send our data.
+	  alert('urlEncodedData' + urlEncodedData);
+	  console.log("Calling console.log" + urlEncodedData);
+	  var nome=document.getElementById("condomino").value;
+	  var apto=document.getElementById("apto").value;
+	  var password=document.getElementById("password").value;
+	  body = {"nome": nome, "apto": parseInt(apto), "password": password };
+	  alert('body' + nome);
+	  XHR.send(JSON.stringify(body));
+	}
+	
+	</script>
+
+
+<script>      
+* Attach a submit handler to the form */
+$("#foo").submit(function(event) {
+     var ajaxRequest;
+
+    /* Stop form from submitting normally */
+    event.preventDefault();
+
+    /* Clear result div*/
+    $("#result").html('');
+
+    /* Get from elements values */
+    var values = $(this).serialize();
+
+    /* Send the data using post and put the results in a div */
+    /* I am not aborting previous request because It's an asynchronous request, meaning 
+       Once it's sent it's out there. but in case you want to abort it  you can do it by  
+       abort(). jQuery Ajax methods return an XMLHttpRequest object, so you can just use abort(). */
+       ajaxRequest= $.ajax({
+            url: "http://localhost:8080/api/novoCondomino",
+            type: "post",
+            data: values
+        });
+
+      /*  request cab be abort by ajaxRequest.abort() */
+
+     ajaxRequest.done(function (response, textStatus, jqXHR){
+          // show successfully for submit message
+          $("#result").html('Submitted successfully');
+     });
+
+     /* On failure of request this function will be called  */
+     ajaxRequest.fail(function (){
+
+       // show error
+       $("#result").html('There is error while submit');
+     });
+     
+     </script>
+        
 </head>
 
     <body>
         <div class="container-fluid" id="header"> </div>
         <div class="container-fluid">
         <br><br><br>			
-        <H1> Novo condomino </H1>
+        <H1>Novo condomino </H1>
 
         </div>
         
-    <form name="inputform" action="http://localhost:8080/api/novoCondomino" method="post" role="form" class="form-horizontal>
+      <FORM NAME="myform" id="inputform" onSubmit="JavaScript:sendData(inputform)">
      <div class="form-row">
 
     <div class="form-group col-md-12">
     <label for="inputAddress">Nome</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="Nome">
+    <input type="text" class="form-control" id="condomino" placeholder="Nome">
     </div>
   </div>
   <div class="form-group">
     <label for="inputAddress2">Apartamento</label>
-    <input type="text" class="form-control" id="inputAddress2" placeholder="Apto">
+    <input type="text" class="form-control" id="apto" placeholder="Apto">
 
  
   </div>
   <div class="form-group">
       <label for="inputPassword4">Senha</label>
-      <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+      <input type="password" class="form-control" id="password" placeholder="Password">
   </div>
   <div class="form-row">
   </div>
@@ -59,7 +156,22 @@
       </label>
     </div>
   </div>
-  <button type="submit" class="btn btn-primary">Sign in</button>
+  <input type="submit" value="Send "class="btn btn-primary">Sign in</button>
 </form>
+
+<form action="http://localhost:8080/api/novoCondomino" method="post">
+  <input name="say" value="Hi">
+  <input name="to" value="Mom">
+  <input type="submit" value="Send" />
+</form>
+
+<form id="fozo">
+    <label for="bar">A bar</label>
+    <input id="bar" name="bar" type="text" value="" />
+    <input type="submit" value="Send" />
+</form>
+
+<!-- The result of the search will be rendered inside this div -->
+<div id="result"></div>
  </body>
 </html>

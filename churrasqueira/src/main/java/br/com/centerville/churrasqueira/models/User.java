@@ -2,21 +2,27 @@ package br.com.centerville.churrasqueira.models;
 
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@Table(name="usr", indexes = {
-	@Index(columnList = "apto", unique = true)
+@Table(name="user", indexes = {
+	@Index(columnList = "apartamento", unique = true)
 })
 public class User implements UserDetails {
     
@@ -28,28 +34,38 @@ public class User implements UserDetails {
     */
     
     @Id
-    @NotNull
-    @Column(name="apto")
-    private int apto;
+    @Column(name="apartamento")
+    private int apartamento;
     
-    @NotNull
+    @JsonIgnore
+    @OneToOne(mappedBy = "apartamento")
+    private Reserva reserva;
+    
     @Column(name="nome")
     private String condomino;
     
-    @NotNull
     @Column(name="senha")
     private String password;
   
-  public void setPassword(String password) {
+    
+    public Reserva getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(Reserva reserva) {
+        this.reserva = reserva;
+    }
+
+    public void setPassword(String password) {
         this.password = password;
     }
 
    public int getApartamento() {
-        return apto;
+        return apartamento;
     }
 
     public void setApartamento(int apartamento) {
-        this.apto = apartamento;
+        this.apartamento = apartamento;
     }
 
     public String getCondomino() {
@@ -74,31 +90,31 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-	// TODO Auto-generated method stub
-	return String.valueOf(this.apto);
+
+	return String.valueOf(this.apartamento);
     }
 
     @Override
     public boolean isAccountNonExpired() {
-	// TODO Auto-generated method stub
+
 	return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-	// TODO Auto-generated method stub
+
 	return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-	// TODO Auto-generated method stub
+
 	return true;
     }
 
     @Override
     public boolean isEnabled() {
-	// TODO Auto-generated method stub
+
 	return true;
     }
 

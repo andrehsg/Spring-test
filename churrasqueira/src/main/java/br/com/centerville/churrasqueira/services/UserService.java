@@ -12,5 +12,6 @@ public interface UserService {
     void afterApplicationReady(ApplicationReadyEvent event);
     User getUsers(int id);
     List<User> getAllUsers();
+    public User logUserIn (int apto, String password);
 
 }
